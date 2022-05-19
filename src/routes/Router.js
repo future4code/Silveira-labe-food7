@@ -7,6 +7,7 @@ import EditPerfil from "../pages/EditPerfil/EditPerfil";
 import FeedPage from "../pages/FeedPage/FeedPage";
 import RestaurantMenu from "../pages/RestaurantMenu/RestaurantMenu";
 import EditAddress from "../pages/EditAddressPage/EditAddress";
+import HeaderPage from "../components/Header/HeaderPage";
 
 const Router = () => {
     return (
@@ -19,6 +20,7 @@ const Router = () => {
           <Route path="/feed" element={<FeedPage/>}/>
           <Route path="/menu" element={<RestaurantMenu/>}/>
           <Route path="/endereco" element={<EditAddress/>}/>
+          
         </Routes>
       </BrowserRouter>
     );

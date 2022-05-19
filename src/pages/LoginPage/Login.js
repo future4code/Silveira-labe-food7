@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../../components/Header";
+import { Button, ContainerLogin, H3, Form, Input, ContainerBut, ContainerCadastro, ButtonCadastro } from "./styled"
 
 const Login = () => {
  const [email, setEmail] = useState("");
@@ -38,7 +40,7 @@ const onSubmitLogin = (event) => {
      
      axios
        .post(
-           "https://us-central1-missao-newton.cloudfunctions.net/{{rappi4C}}/login", body
+           "https://us-central1-missao-newton.cloudfunctions.net/rappi4C/login", body
        )
      
     .then((response) => {
@@ -65,25 +67,34 @@ const onSubmitLogin = (event) => {
 
 
     return(
-        <div>
-            <h3>Login</h3>
-            <form onSubmit={onSubmitLogin}>
-                <input placeholder="E-mail" type="email" value={email} onChange={onChangeEmail} >
+        <>
+      <Header/>
+        <ContainerLogin>
+            <H3>Entrar</H3>
+            <Form onSubmit={onSubmitLogin}>
+                <Input placeholder="E-mail" 
+                type="email" 
+                value={email} 
+                onChange={onChangeEmail} >
 
-                </input>
-                <input placeholder="Senha" type="password" value={senha} onChange={onChangeSenha}>
+                </Input>
+                <Input placeholder="Senha" 
+                type="password" 
+                value={senha} 
+                onChange={onChangeSenha}>
                 
-                </input>
-                <div>
-                    <button>Entrar</button>
-                    <button onClick={goBack}>Voltar</button>
-                </div>
-            </form>
-            <div>
-            <h3>Não tem conta?</h3>
-            <button onClick={goToCadastro}>Cadastre-se</button>
-            </div>
-        </div>
+                </Input>
+                <ContainerBut>
+                    <Button>Entrar</Button>
+                    <Button onClick={goBack}>Voltar</Button>
+                </ContainerBut>
+            </Form>
+            <ContainerCadastro>
+            <H3>Não tem conta?</H3>
+            <ButtonCadastro onClick={goToCadastro}>Cadastre-se</ButtonCadastro>
+            </ContainerCadastro>
+        </ContainerLogin>
+        </>
     )
 }
 

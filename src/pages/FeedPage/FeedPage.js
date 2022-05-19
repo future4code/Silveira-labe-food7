@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from 'axios'
 import { RestaurantContainer, RestaurantLogo, Restaurante, RestauranteBox, RestaurantTitle } from "./FeedPageStyle";
 import {goToRestaurantMenuPage} from '../../routes/coordinator'
 import { useNavigate } from "react-router-dom";
+import GlobalStateContext from "../../context/global/GlobalStateContext";
 
 const url = `https://us-central1-missao-newton.cloudfunctions.net/rappi4C/restaurants`
 
 const FeedPage = () => {
     const navigate = useNavigate() 
-    const [restaurants, setRestaurants] = useState([])
+    const { states, setters } = useContext(GlobalStateContext)
+    // const [restaurants, setRestaurants] = useState([])
+    const { restaurants } = states
+    const { setRestaurants } = setters
 
     const onClickCard = (id) => {
         goToRestaurantMenuPage(navigate, id)

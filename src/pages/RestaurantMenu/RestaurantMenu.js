@@ -1,12 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
 import MenuRestaurantCard from './RestaurantMenuCard'
 import axios from 'axios'
 import { Restaurante } from "./RestaurantMenuStyle";
+import GlobalStateContext from "../../context/global/GlobalStateContext";
 
 
 const RestaurantMenu = (props) => {
-    const [menuRestaurant, setMenuRestaurant] = useState([])
+    // const [menuRestaurant, setMenuRestaurant] = useState([])
+    const {states, setters} = useContext(GlobalStateContext)
+    const {menuRestaurant} = states
+    const {setMenuRestaurant} = setters
     const params = useParams()
 
     useEffect(() => {

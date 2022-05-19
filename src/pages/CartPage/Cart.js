@@ -11,7 +11,7 @@ const Banner = styled.div`
 `
 
 const Cart = () => {
-  //   const [cartItem, setCartItem] = useState([{}]);
+    // const [cartItem, setCartItem] = useState([{}]);
     const [paymentMethod, setPaymentMethod] = useState("")
     const [isBannerOpen, setIsBannerOpen] = useState(false)
 

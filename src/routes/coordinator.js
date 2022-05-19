@@ -13,8 +13,8 @@ export const goToEditPerfilPage = (navigate) => {
 export const goToFeedPage = (navigate) => {
     navigate("/feed") 
 }
-export const goToRestaurantMenuPage = (navigate) => {
-    navigate("/menu") 
+export const goToRestaurantMenuPage = (navigate, id) => {
+    navigate(`/menu/${id}`) 
 }
 export const goToEditAddressPage = (navigate) => {
     navigate("/endereco") 

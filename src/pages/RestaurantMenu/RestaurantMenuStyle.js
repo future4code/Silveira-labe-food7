@@ -11,11 +11,17 @@ export const MenuContainer = styled.div`
     align-items: center;
 `
 
+export const MenuText = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+`
+
 export const ProductCard = styled.div`
     width: 360px;
     margin: 8px 0 0;
     border-radius: 8px;
-    height: 160px;
+    height: 185px;
 `
 export const Rectangle = styled.div`
     display: flex;

@@ -20,3 +20,7 @@ export const goToEditAddressPage = (navigate) => {
     navigate("/endereco") 
 }
 
+export const goBack = (navigate) => {
+    navigate(-1)
+}
+

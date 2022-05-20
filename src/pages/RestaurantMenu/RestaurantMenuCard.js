@@ -2,9 +2,8 @@ import React, { useContext, useState } from 'react';
 import { MenuContainer, MenuPhoto, ProductCard, Rectangle, Button, Restaurante, MenuText } from './RestaurantMenuStyle';
 import GlobalStateContext from "../../context/global/GlobalStateContext";
 
-
-
 export default function MenuRestaurantCard(props) {
+
     const { states, setters } = useContext(GlobalStateContext)
     const { cartItem } = states
     const { setCartItem } = setters
@@ -18,14 +17,11 @@ export default function MenuRestaurantCard(props) {
                 item.quantity += 1
                 haveInCart = true
             }
-            
-        }if(haveInCart === false){
+        } if(haveInCart === false){
             newCart.push({...produto, quantity: 1})
         }
         setCartItem(newCart)
     }
-    
-
     
     return (
         <MenuContainer>

@@ -5,6 +5,7 @@ import axios from "axios";
 import { Restaurante,  ResPhoto  } from "./RestaurantMenuStyle";
 import GlobalStateContext from "../../context/global/GlobalStateContext";
 import { goToCartPage } from "../../routes/coordinator";
+import { header } from "../../constants/constants";
 
 const RestaurantMenu = (props) => {
   const { states, setters } = useContext(GlobalStateContext);
@@ -35,11 +36,7 @@ const RestaurantMenu = (props) => {
     })
 
     const getRestaurantDetails = () => {
-          axios.get(`https://us-central1-missao-newton.cloudfunctions.net/rappi4C/restaurants/${params.id}`, {
-            headers: {
-              auth: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ikp6cHgyNWcyMVl2MGR2VGQ1T2N6IiwibmFtZSI6IkFzdHJvZGV2IiwiZW1haWwiOiJ0ZXN0ZUBmdXR1cmU0LmNvbSIsImNwZiI6IjExMS4xMTEuMTExLTAwIiwiaGFzQWRkcmVzcyI6dHJ1ZSwiYWRkcmVzcyI6IlIuIEFmb25zbyBCcmF6LCAxNzcsIDcxIC0gVmlsYSBOLiBDb25jZWnDp8OjbyIsImlhdCI6MTY1Mjg4Mzc5Mn0.dib6FPK53T3GtcZnDBvCeJIS1XOArSH6ASjpYYghh0E"
-            }
-          })
+          axios.get(`https://us-central1-missao-newton.cloudfunctions.net/rappi4C/restaurants/${params.id}`, header)
           .then((res) => {
             setMenuRestaurant(res.data.restaurant.products)
             // console.log(res.data.restaurant.products)

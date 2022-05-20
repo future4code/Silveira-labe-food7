@@ -8,7 +8,7 @@ export const goToCartPage = (navigate) => {
     navigate("/carrinho") 
 }
 export const goToEditPerfilPage = (navigate) => {
-    navigate("/perfil") 
+    navigate("/perfilEditar") 
 }
 export const goToFeedPage = (navigate) => {
     navigate("/feed") 
@@ -18,6 +18,12 @@ export const goToRestaurantMenuPage = (navigate, id) => {
 }
 export const goToEditAddressPage = (navigate) => {
     navigate("/endereco") 
+}
+export const goToProfilePage = (navigate) => {
+    navigate("/perfil")
+}
+export const goToEditAddressPage2 = (navigate) => {
+    navigate("/enderecoEditar") 
 }
 
 export const goBack = (navigate) => {

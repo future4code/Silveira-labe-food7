@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import Footer from "../../components/Footer/Footer";
 import GlobalStateContext from "../../context/global/GlobalStateContext";
 import useProfile from "../../hook/useProfile";
 import { goBack } from "../../routes/coordinator";
@@ -10,7 +11,6 @@ import {
   ProductCard,
   Rectangle,
   Button,
-  Restaurante,
 } from "../RestaurantMenu/RestaurantMenuStyle";
 
 const Banner = styled.div`
@@ -75,8 +75,12 @@ const Cart = () => {
     );
   });
   if (itens.length === 0) {
-    return <h3>"Carrinho Vazio"</h3>;
-  }
+    return(
+    <div>
+    <h3>"Carrinho Vazio"</h3>
+    <Footer/>
+    </div>
+  )}
 
   let totalPrice = 0;
 
@@ -87,11 +91,12 @@ const Cart = () => {
   }
 
   return (
+  <div>
     <div>
       <p>Endereço de entrega</p>
       <p>{profile && profile.address}</p>
       {itens}
-      <p>Preço Total: R${totalPrice},00 </p>
+      <p>Preço Total: R${totalPrice}</p>
       <form>
         <input
           onChange={onChangePaymentMethod}
@@ -114,6 +119,8 @@ const Cart = () => {
       </form>
       <button onClick={() => goBack(navigate)}>Voltar</button>
       {isBannerOpen && <Banner />}
+    </div>
+    <Footer/>
     </div>
   );
 };

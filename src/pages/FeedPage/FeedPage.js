@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from 'axios'
-import { RestaurantContainer, RestaurantLogo, Restaurante, RestauranteBox, RestaurantTitle } from "./FeedPageStyle";
+import { RestaurantContainer, RestaurantLogo, Restaurante, RestauranteBox, RestaurantTitle, Filtro } from "./FeedPageStyle";
 import {goToRestaurantMenuPage} from '../../routes/coordinator'
 import { useNavigate } from "react-router-dom";
 import GlobalStateContext from "../../context/global/GlobalStateContext";
@@ -10,7 +10,8 @@ const url = `https://us-central1-missao-newton.cloudfunctions.net/rappi4C/restau
 const FeedPage = () => {
     const navigate = useNavigate() 
     const { states, setters } = useContext(GlobalStateContext)
-    // const [restaurants, setRestaurants] = useState([])
+    const [ search, setSearch ] = useState("")
+    const [ category, setCategory ] = useState("")
     const { restaurants } = states
     const { setRestaurants } = setters
 
@@ -20,7 +21,7 @@ const FeedPage = () => {
 
     useEffect(() => {
         getRestaurants()
-    }, [])
+    }, )
 
     const getRestaurants = () => {
         axios.get(url, {
@@ -36,7 +37,14 @@ const FeedPage = () => {
             })
     }
 
-    const restaurantList = restaurants && restaurants.map((restaurant) => {
+    const restaurantList = restaurants && restaurants.filter(
+        ((restaurant) => {
+            return (
+                (!search ? true : restaurant.name.toLowerCase().includes(search.toLowerCase())) && 
+                (!category ? true : restaurant.category.toLowerCase().includes(category.toLowerCase()))
+            )
+        })
+    ).map((restaurant) => {
         return (
         <RestaurantContainer key={restaurant.id}>
             <RestauranteBox onClick={() => onClickCard(restaurant.id)}>
@@ -48,13 +56,29 @@ const FeedPage = () => {
         </RestaurantContainer>
     )})
 
+    const restaurantFilter = (chosenCategory) => {
+        if (chosenCategory === category){
+            setCategory("")
+        }
+        else {
+            setCategory(chosenCategory)
+        }
+    }
 
     return (
-        <Restaurante> Essa é a página de feed!
-        <form>
-        <input type="text" placeholder="Restaurante" name="search"></input>
-        <button type="submit">Submit</button>
-        </form>
+        <Restaurante>
+        <Filtro>
+        <button onClick={() => restaurantFilter("Hamburguer")}> HAMBURGUER </button>
+        <button onClick={() => restaurantFilter("Árabe")}> ARABE </button>
+        <button onClick={() => restaurantFilter("Italiana")}> ITALIANA </button>
+        <button onClick={() => restaurantFilter("Mexicana")}> MEXICANA </button>
+        <button onClick={() => restaurantFilter("Asiática")}> ASIÁTICA </button>
+        <button onClick={() => restaurantFilter("Sorvetes")}> SORVETES </button>
+        <button onClick={() => restaurantFilter("Carnes")}> CARNES </button>
+        <button onClick={() => restaurantFilter("Baiana")}> BAIANA </button>
+        <button onClick={() => restaurantFilter("Petiscos")}> PESTISCOS </button>
+        </Filtro>
+        <input type="text" placeholder="Restaurante" name="search" value={search} onChange = {(e) => setSearch(e.target.value)}></input>
         {restaurantList}
         </Restaurante>
     )

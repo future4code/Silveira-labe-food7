@@ -1,15 +1,14 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import MenuRestaurantCard from './RestaurantMenuCard'
 import axios from 'axios'
-import { Restaurante } from "./RestaurantMenuStyle";
+import { Restaurante, ResPhoto } from "./RestaurantMenuStyle";
 import GlobalStateContext from "../../context/global/GlobalStateContext";
 
 
 const RestaurantMenu = (props) => {
-    // const [menuRestaurant, setMenuRestaurant] = useState([])
     const {states, setters} = useContext(GlobalStateContext)
-    const {menuRestaurant} = states
+    const {restaurants, menuRestaurant} = states
     const {setMenuRestaurant} = setters
     const params = useParams()
 
@@ -17,17 +16,20 @@ const RestaurantMenu = (props) => {
         getRestaurantDetails()
     }, [])
 
-    // const titleRestaurant = posts && posts.map((post) => {
-    //   if (post.id === params.id) {
-    //     return (
-    //       <PostContainer key={post.id}>
-    //         <p>User:{post.username}</p>
-    //         <p>Título:{post.title}</p>
-    //         <p>Descrição:{post.body}</p>
-    //       </PostContainer>
-    //     )
-    //   }
-    // })
+    const titleRestaurant = restaurants && restaurants.map((restaurant) => {
+      if (restaurant.id === params.id) {
+        return (
+          <div key={restaurant.id}>
+            <ResPhoto src={restaurant.logoUrl}/>
+            <p>{restaurant.name}</p>
+            <p>{restaurant.category}</p>
+            <p>{restaurant.deliveryTime} min</p>
+            <p>Frete R${restaurant.shipping}</p>
+            <p>{restaurant.address} </p>
+          </div>
+        )
+      }
+    })
 
     const getRestaurantDetails = () => {
           axios.get(`https://us-central1-missao-newton.cloudfunctions.net/rappi4C/restaurants/${params.id}`, {
@@ -37,10 +39,10 @@ const RestaurantMenu = (props) => {
           })
           .then((res) => {
             setMenuRestaurant(res.data.restaurant.products)
-            console.log(res.data.restaurant)
+            // console.log(res.data.restaurant.products)
           })
           .catch((er) => {
-            console.log(er)
+            alert(er)
           })
     } 
 
@@ -59,6 +61,8 @@ const RestaurantMenu = (props) => {
 
     return(
         <Restaurante> 
+        {titleRestaurant}
+        <h1> PRINCIPAIS </h1>
         {restaurantMenuList}
         </Restaurante>
     )

@@ -12,7 +12,7 @@ padding: 24px 0;
 
 export const H3 = styled.h3`
 font-size: 1.5rem;
-
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 `
 
 export const Form = styled.form`
@@ -21,8 +21,8 @@ flex-direction: column;
 `
 
 export const Input = styled.input`
-width: 35vw;
-height: 4vw;
+width: 55vw;
+height: 4vh;
 border-radius: 10px;
 border: 0px;
 margin: 7px;
@@ -46,7 +46,7 @@ align-items: center;
 export const Button = styled.button`
 background-color: #E86E5A;
 width: 50%;
-height: 3vw;
+height: 7vw;
 margin: 10px;
 border: 0px;
 border-radius: 5px;
@@ -57,7 +57,7 @@ color: black;
 `
 
 export const ContainerLogin = styled.div`
-margin-top: 5vh;
+margin-top: -6px;
 display: flex;
 flex-direction: column;
 align-items: center;

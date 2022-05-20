@@ -13,14 +13,23 @@ export const RestaurantContainer = styled.div`
 
 export const RestaurantTitle = styled.div`
   font-size: 30px;
+  color: #e86e5a;
+`
+
+export const Filtro = styled.div`
+ width: 360px;
+ height: 42px;
+ margin: 8px 0 0;
+ padding: 12px 0 12px 16px;
 `
 
 export const RestauranteBox = styled.div`
-  width: 328px;
-  height: 250px;
-  padding: 0 0 16px;
-  border-radius: 8px;
-  border: solid 1px #b8b8b8;
+ width: 328px;
+ height: 188px;
+ padding: 0 0 16px;
+ border-radius: 8px;
+ border: solid 1px #b8b8b8;
+
   .shipping {
   width: 140px;
   height: 18px;
@@ -34,6 +43,7 @@ export const RestauranteBox = styled.div`
   letter-spacing: -0.39px;
   text-align: right;
   }
+  
   .deliverytime{
   width: 148px;
   height: 18px;

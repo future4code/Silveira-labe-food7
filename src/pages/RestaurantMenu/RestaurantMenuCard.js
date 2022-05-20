@@ -1,6 +1,5 @@
 import React from 'react';
-import { MenuContainer, MenuPhoto, ProductCard, Rectangle, Button, Restaurante } from './RestaurantMenuStyle';
-
+import { MenuContainer, MenuPhoto, ProductCard, Rectangle, Button } from './RestaurantMenuStyle';
 
 export default function MenuRestaurantCard(props) {
     return (
@@ -9,7 +8,7 @@ export default function MenuRestaurantCard(props) {
              <Rectangle>
              <MenuPhoto src={props.photoUrl}/>
             <div>
-                <p>{props.name}</p>
+                <p>{props.category}</p>
                 <p>{props.description}</p>
                 <p> R${props.price} </p>
             </div>

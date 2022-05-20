@@ -47,3 +47,12 @@ export const Button = styled.button`
   text-align: center;
   color: #000;
 `
+
+// Da parte de cima do restaurante
+
+export const ResPhoto = styled.img`
+  width: 328px;
+  height: 120px;
+  margin: 17px 16px 12px;
+  object-fit: contain;
+`

@@ -1,25 +1,21 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom"
-
-
-
+import { useNavigate } from "react-router-dom";
 
 const useProtectedPage = () => {
-    const Navigate = useNavigate();
+  const Navigate = useNavigate();
 
-    const protect = () => {
-        const token = localStorage.getItem("token");
+  const protect = () => {
+    const token = localStorage.getItem("token");
 
-        if (token === null) {
-            alert("Você deve estar logado para continuar");
-            Navigate("/")
-        }
-    };
+    if (token === null) {
+      alert("Você deve estar logado para continuar");
+      Navigate("/");
+    }
+  };
 
-    useEffect(() => {
-        protect();
-    }, []);
-}
-
+  useEffect(() => {
+    protect();
+  }, []);
+};
 
 export default useProtectedPage;

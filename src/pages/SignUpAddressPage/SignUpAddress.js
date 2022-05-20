@@ -6,7 +6,7 @@ import useProtectedPage from "../../hook/useProtectedPage";
 import usePutChangeAddress from "../../hook/usePutChangeAddress";
 import { Container, Form, Input, ContainerBut, ContainerBack, Button, ButtonBack, H3 } from "./styled";
 
-const EditAddress = () => {
+const SignUpAddress = () => {
   useProtectedPage()
   const navigate = useNavigate();
   const goTo = () => {
@@ -115,4 +115,4 @@ const EditAddress = () => {
     )
 }
 
-export default EditAddress
+export default SignUpAddress

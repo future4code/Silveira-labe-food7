@@ -6,8 +6,8 @@ import Cart from "../pages/CartPage/Cart";
 import EditPerfil from "../pages/EditPerfil/EditPerfil";
 import FeedPage from "../pages/FeedPage/FeedPage";
 import RestaurantMenu from "../pages/RestaurantMenu/RestaurantMenu";
-import EditAddress from "../pages/EditAddressPage/EditAddress";
-
+import SignUpAddress from "../pages/SignUpAddressPage/SignUpAddress";
+import PerfilPage from "../pages/PerfilPage/PerfilPage"
 
 const Router = () => {
     return (
@@ -16,11 +16,11 @@ const Router = () => {
           <Route index element={<Login/>}/>
           <Route path="/cadastro" element={<SignUp/>}/>
           <Route path="/carrinho" element={<Cart/>}/>
-          <Route path="/perfil" element={<EditPerfil/>}/>
+          <Route path="/editarPerfil" element={<EditPerfil/>}/>
           <Route path="/feed" element={<FeedPage/>}/>
           <Route path="/menu/:id" element={<RestaurantMenu/>}/>
-          <Route path="/endereco" element={<EditAddress/>}/>
-          
+          <Route path="/endereco" element={<SignUpAddress/>}/>
+          <Route path="/editarEndereco" element={<PerfilPage/>}/>
         </Routes>
       </BrowserRouter>
     );

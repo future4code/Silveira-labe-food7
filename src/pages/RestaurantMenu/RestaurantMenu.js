@@ -1,20 +1,23 @@
-import React, {useContext, useEffect} from "react";
-import { useParams } from "react-router-dom";
-import MenuRestaurantCard from './RestaurantMenuCard'
-import axios from 'axios'
-import { Restaurante, ResPhoto } from "./RestaurantMenuStyle";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import MenuRestaurantCard from "./RestaurantMenuCard";
+import axios from "axios";
+import { Restaurante,  ResPhoto  } from "./RestaurantMenuStyle";
 import GlobalStateContext from "../../context/global/GlobalStateContext";
-
+import { goToCartPage } from "../../routes/coordinator";
 
 const RestaurantMenu = (props) => {
-    const {states, setters} = useContext(GlobalStateContext)
-    const {restaurants, menuRestaurant} = states
-    const {setMenuRestaurant} = setters
-    const params = useParams()
+  const { states, setters } = useContext(GlobalStateContext);
+  const { restaurants, menuRestaurant } = states;
+  const { setMenuRestaurant } = setters;
+  const params = useParams();
+  const navigate = useNavigate()
 
-    useEffect(() => {
-        getRestaurantDetails()
-    }, [])
+
+  useEffect(() => {
+    getRestaurantDetails();
+  }, []);
+
 
     const titleRestaurant = restaurants && restaurants.map((restaurant) => {
       if (restaurant.id === params.id) {
@@ -46,26 +49,32 @@ const RestaurantMenu = (props) => {
           })
     } 
 
-    const restaurantMenuList = menuRestaurant && menuRestaurant.map((menu) => {
-        return (
+  const restaurantMenuList =
+    menuRestaurant &&
+    menuRestaurant.map((menu) => {
+      return (
         <MenuRestaurantCard
-        key={menu.id}
-        description={menu.description}
-        name={menu.name}
-        category={menu.category}
-        price={menu.price}
-        photoUrl={menu.photoUrl}
-        idProduto={menu.id}
-      />
-    )})
+          key={menu.id}
+          description={menu.description}
+          name={menu.name}
+          category={menu.category}
+          price={menu.price}
+          photoUrl={menu.photoUrl}
+          idProduto={menu.id}
+          produto={menu}
+        />
+      );
+    });
 
-    return(
-        <Restaurante> 
-        {titleRestaurant}
-        <h1> PRINCIPAIS </h1>
-        {restaurantMenuList}
-        </Restaurante>
-    )
-}
+  return (
+    <Restaurante>
+    
+      <button onClick={() => goToCartPage(navigate)}>Vai pro carrinho</button>
+       {titleRestaurant}
+       <h1> PRINCIPAIS </h1>
+       {restaurantMenuList}
+    </Restaurante>
+  );
+};
 
-export default RestaurantMenu
+export default RestaurantMenu;

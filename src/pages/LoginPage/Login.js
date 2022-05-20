@@ -31,22 +31,13 @@ const onChangeSenha = (event) => {
 const onSubmitLogin = (event) => {
      event.preventDefault();
 
- 
-     const body = {
-         email: email,
-         password: senha,
-     };
-      
-     
+     const body = {email: email, password: senha,};
+        
      axios
-       .post(
-           "https://us-central1-missao-newton.cloudfunctions.net/rappi4C/login", body
-       )
-     
-    .then((response) => {
+     .post("https://us-central1-missao-newton.cloudfunctions.net/rappi4C/login", body
+    ).then((response) => {
         localStorage.setItem("token", response.data.token);
         const hasAddress = response.data.user.hasAddress;
-
 
         if (hasAddress === true) {
             navigate("/feed");
@@ -55,16 +46,12 @@ const onSubmitLogin = (event) => {
             navigate("/endereco")
             console.log(response.data)
         }
+        
     })
     .catch((error) => {
         alert(error.response.data.message);
     })
-
-
 };
-
-
-
 
     return(
         <>

@@ -3,6 +3,7 @@ import { MenuContainer, MenuPhoto, ProductCard, Rectangle, Button, Restaurante, 
 import GlobalStateContext from "../../context/global/GlobalStateContext";
 
 
+
 export default function MenuRestaurantCard(props) {
     const { states, setters } = useContext(GlobalStateContext)
     const { cartItem } = states
@@ -33,6 +34,7 @@ export default function MenuRestaurantCard(props) {
              <MenuPhoto src={props.photoUrl}/>
             <MenuText>
                 <p>{props.name}</p>
+
                 <p>{props.description}</p>
                 <p> R${props.price} </p>
             </MenuText>

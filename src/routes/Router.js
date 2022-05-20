@@ -7,7 +7,7 @@ import EditPerfil from "../pages/EditPerfil/EditPerfil";
 import FeedPage from "../pages/FeedPage/FeedPage";
 import RestaurantMenu from "../pages/RestaurantMenu/RestaurantMenu";
 import EditAddress from "../pages/EditAddressPage/EditAddress";
-import HeaderPage from "../components/Header/HeaderPage";
+
 
 const Router = () => {
     return (

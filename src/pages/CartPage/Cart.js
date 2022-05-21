@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -13,21 +14,14 @@ import {
   Restaurante,
 } from "../RestaurantMenu/RestaurantMenuStyle";
 
-const Banner = styled.div`
-  position: fixed;
-  bottom: 0;
-  width: 100vw;
-  height: 150px;
-  background-color: salmon;
-  left: 0;
-`;
+
 
 const Cart = () => {
   // const [cartItem, setCartItem] = useState([{}]);
   const [paymentMethod, setPaymentMethod] = useState("");
   const { states, setters } = useContext(GlobalStateContext);
-  const { cartItem, isBannerOpen } = states;
-  const { setCartItem, setIsBannerOpen } = setters;
+  const { details, cartItem, isBannerOpen } = states;
+  const { setDetails, setCartItem, setIsBannerOpen } = setters;
   const profile = useProfile();
   const navigate = useNavigate();
 
@@ -51,6 +45,31 @@ const Cart = () => {
       setCartItem(newCart);
     }
   };
+
+  const onSubmitConfirmOrder = (event) => {
+    event.preventDefault()
+    const token = localStorage.getItem("token");
+
+    const url = `https://us-central1-missao-newton.cloudfunctions.net/rappi4C/restaurants/${details.id}/order`
+    const body = {
+      products: cartItem,
+      paymentMethod: paymentMethod,
+    }
+    axios.post(url, body, {headers:{
+      auth: token
+    }
+    })
+    .then((response) => {
+      console.log("deu certo")
+      setDetails(response.data.order);
+      setIsBannerOpen(true)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }
+
+  
 
   const itens = cartItem.map((produto) => {
     return (
@@ -91,29 +110,31 @@ const Cart = () => {
       <p>Endereço de entrega</p>
       <p>{profile && profile.address}</p>
       {itens}
-      <p>Preço Total: R${totalPrice},00 </p>
-      <form>
+      <p>Preço Total: R${totalPrice}</p>
+      <form onSubmit={onSubmitConfirmOrder}>
         <input
           onChange={onChangePaymentMethod}
           type="radio"
-          id="dinheiro"
+          id="money"
           name="paymentMethod"
-          value="dinheiro"
-          checked={paymentMethod === "dinheiro"}
+          value="money"
+          checked={paymentMethod === "money"}
+          required
         />
-        <label for="dinheiro">Dinheiro</label>
+        <label for="money">Dinheiro</label>
         <input
           onChange={onChangePaymentMethod}
           type="radio"
-          id="cartao"
+          id="creditcard"
           name="paymentMethod"
-          value="cartao"
-          checked={paymentMethod === "cartao"}
+          value="creditcard"
+          checked={paymentMethod === "creditcard"}
+          required
         />
-        <label for="cartao">Cartão</label>
+        <label for="creditcard">Cartão</label>
+        <button>Confirmar</button>
       </form>
-      <button onClick={() => goBack(navigate)}>Voltar</button>
-      {isBannerOpen && <Banner />}
+      
     </div>
   );
 };

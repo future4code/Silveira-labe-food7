@@ -10,7 +10,7 @@ import { header } from "../../constants/constants";
 const RestaurantMenu = (props) => {
   const { states, setters } = useContext(GlobalStateContext);
   const { restaurants, menuRestaurant } = states;
-  const { setMenuRestaurant } = setters;
+  const { setDetails, setMenuRestaurant } = setters;
   const params = useParams();
   const navigate = useNavigate()
 
@@ -39,7 +39,7 @@ const RestaurantMenu = (props) => {
           axios.get(`https://us-central1-missao-newton.cloudfunctions.net/rappi4C/restaurants/${params.id}`, header)
           .then((res) => {
             setMenuRestaurant(res.data.restaurant.products)
-            // console.log(res.data.restaurant.products)
+            setDetails(res.data.restaurant)
           })
           .catch((er) => {
             alert(er)

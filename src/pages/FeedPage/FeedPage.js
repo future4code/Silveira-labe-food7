@@ -23,7 +23,7 @@ const FeedPage = () => {
 
     useEffect(() => {
         getRestaurants()
-    }, )
+    }, [])
 
     const getRestaurants = () => {
         axios.get(url, header)

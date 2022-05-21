@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import Footer from "../../components/Footer/Footer";
 import GlobalStateContext from "../../context/global/GlobalStateContext";
 import useProfile from "../../hook/useProfile";
 import { goBack } from "../../routes/coordinator";
@@ -11,7 +12,6 @@ import {
   ProductCard,
   Rectangle,
   Button,
-  Restaurante,
 } from "../RestaurantMenu/RestaurantMenuStyle";
 
 
@@ -69,8 +69,6 @@ const Cart = () => {
     })
   }
 
-  
-
   const itens = cartItem.map((produto) => {
     return (
       <div>
@@ -94,8 +92,12 @@ const Cart = () => {
     );
   });
   if (itens.length === 0) {
-    return <h3>"Carrinho Vazio"</h3>;
-  }
+    return(
+    <div>
+    <h3>"Carrinho Vazio"</h3>
+    <Footer/>
+    </div>
+  )}
 
   let totalPrice = 0;
 
@@ -106,12 +108,14 @@ const Cart = () => {
   }
 
   return (
+  <div>
     <div>
       <p>Endereço de entrega</p>
       <p>{profile && profile.address}</p>
       {itens}
       <p>Preço Total: R${totalPrice}</p>
       <form onSubmit={onSubmitConfirmOrder}>
+        
         <input
           onChange={onChangePaymentMethod}
           type="radio"
@@ -135,6 +139,8 @@ const Cart = () => {
         <button>Confirmar</button>
       </form>
       
+    </div>
+    <Footer/>
     </div>
   );
 };

@@ -5,12 +5,9 @@ import Header from "../../components/Header";
 import { useNavigate } from "react-router-dom";
 import { Container, H3, Form, Input, ContainerBut, Button, ContainerLogin, ButtonLogin } from "./styled";
 
-
-
-
 const SignUp = () => {
-
  const navigate = useNavigate();
+
  const { form, onChangeForm, clearForm } = useForm({
      name: "",
      email: "",
@@ -19,14 +16,12 @@ const SignUp = () => {
  });
 
  const { postCadastro } = useCadastro("rappi4C/signup", form, clearForm);
+
  const onSignUp = (e) => {
     e.preventDefault()
-
     postCadastro(form.cpf);
  }
  
-
-
     return(
         <>
         <Header/>
@@ -72,8 +67,6 @@ const SignUp = () => {
                <ContainerBut>
                    <Button type="submit">Criar</Button>
                </ContainerBut> 
-                
-
             </Form>
 
             <ContainerLogin>

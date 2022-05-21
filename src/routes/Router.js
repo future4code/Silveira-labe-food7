@@ -8,6 +8,7 @@ import FeedPage from "../pages/FeedPage/FeedPage";
 import RestaurantMenu from "../pages/RestaurantMenu/RestaurantMenu";
 import SignUpAddress from "../pages/SignUpAddressPage/SignUpAddress";
 import PerfilPage from "../pages/PerfilPage/PerfilPage"
+import EditAddress from "../pages/EditAddressPage/EditAddress"
 
 const Router = () => {
     return (
@@ -16,11 +17,12 @@ const Router = () => {
           <Route index element={<Login/>}/>
           <Route path="/cadastro" element={<SignUp/>}/>
           <Route path="/carrinho" element={<Cart/>}/>
-          <Route path="/editarPerfil" element={<EditPerfil/>}/>
+          <Route path="/perfilEditar" element={<EditPerfil/>}/>
           <Route path="/feed" element={<FeedPage/>}/>
           <Route path="/menu/:id" element={<RestaurantMenu/>}/>
           <Route path="/endereco" element={<SignUpAddress/>}/>
-          <Route path="/editarEndereco" element={<PerfilPage/>}/>
+          <Route path="/perfil" element={<PerfilPage/>}/>
+          <Route path="/enderecoEditar" element={<EditAddress/>}/>
         </Routes>
       </BrowserRouter>
     );

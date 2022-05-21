@@ -4,6 +4,8 @@ import { RestaurantContainer, RestaurantLogo, Restaurante, RestauranteBox, Resta
 import {goToRestaurantMenuPage} from '../../routes/coordinator'
 import { useNavigate } from "react-router-dom";
 import GlobalStateContext from "../../context/global/GlobalStateContext";
+import { header } from "../../constants/constants";
+import Footer from "../../components/Footer/Footer";
 
 const url = `https://us-central1-missao-newton.cloudfunctions.net/rappi4C/restaurants`
 
@@ -24,11 +26,7 @@ const FeedPage = () => {
     }, [])
 
     const getRestaurants = () => {
-        axios.get(url, {
-            headers: {
-                auth: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ikp6cHgyNWcyMVl2MGR2VGQ1T2N6IiwibmFtZSI6IkFzdHJvZGV2IiwiZW1haWwiOiJ0ZXN0ZUBmdXR1cmU0LmNvbSIsImNwZiI6IjExMS4xMTEuMTExLTAwIiwiaGFzQWRkcmVzcyI6dHJ1ZSwiYWRkcmVzcyI6IlIuIEFmb25zbyBCcmF6LCAxNzcsIDcxIC0gVmlsYSBOLiBDb25jZWnDp8OjbyIsImlhdCI6MTY1Mjg4Mzc5Mn0.dib6FPK53T3GtcZnDBvCeJIS1XOArSH6ASjpYYghh0E"
-            }
-        })
+        axios.get(url, header)
             .then((res) => {
                 setRestaurants(res.data.restaurants)
             })
@@ -66,6 +64,7 @@ const FeedPage = () => {
     }
 
     return (
+        <div>
         <Restaurante>
         <Filtro>
         <button onClick={() => restaurantFilter("Hamburguer")}> HAMBURGUER </button>
@@ -81,6 +80,8 @@ const FeedPage = () => {
         <input type="text" placeholder="Restaurante" name="search" value={search} onChange = {(e) => setSearch(e.target.value)}></input>
         {restaurantList}
         </Restaurante>
+        <Footer/>
+        </div>
     )
 }
 

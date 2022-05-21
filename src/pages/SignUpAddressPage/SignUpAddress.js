@@ -7,8 +7,10 @@ import usePutChangeAddress from "../../hook/usePutChangeAddress";
 import { Container, Form, Input, ContainerBut, ContainerBack, Button, ButtonBack, H3 } from "./styled";
 
 const SignUpAddress = () => {
+    
   useProtectedPage()
   const navigate = useNavigate();
+
   const goTo = () => {
       navigate("/feed");
   };
@@ -32,14 +34,7 @@ const SignUpAddress = () => {
      putAddAddress();
   };
 
-  const { putAddAddress } = usePutChangeAddress(
-      "rappi4C/address",
-      form,
-      goTo,
-      goBack
-  );
-
-
+  const { putAddAddress } = usePutChangeAddress("rappi4C/address", form, goTo, goBack);
 
   return(
       <>
